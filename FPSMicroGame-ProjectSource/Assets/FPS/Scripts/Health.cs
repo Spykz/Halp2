@@ -21,6 +21,8 @@ public class Health : MonoBehaviour
 
     bool m_IsDead;
 
+    public GameObject lastDamageSource { get; private set; }
+
     private void Start()
     {
         currentHealth = maxHealth;

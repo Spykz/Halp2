@@ -194,8 +194,22 @@ public class PlayerCharacterController : MonoBehaviour
     {
         isDead = true;
 
+        if (m_Health.lastDamageSource == null)
+        {
+            TelemetryLogger.LogPlayerDeath("Fall", transform.position);
+        } else
+        {
+            TelemetryLogger.LogPlayerDeath(
+                "Damage",
+                transform.position,
+                m_Health.lastDamageSource.name,
+                m_Health.lastDamageSource.transform.position
+                );
+        }
+
         // Tell the weapons manager to switch to a non-existing weapon in order to lower the weapon
         m_WeaponsManager.SwitchToWeaponIndex(-1, true);
+
     }
 
     void GroundCheck()
